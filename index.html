@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="qcm.css">
+<script>
+	var position = 0, qcm, statuts, question, choix, reponses, choisirA, choisirB, choisirC, choisirD, correcte = 0;
+	var questions = [
+	     ["quel est le rapport entre java & javascript ?", "c est le meme langage mais le nom javascript est utilise pour le code s exucutant sur une page web", "ce sont deux langages differentes malgre quelques points commun de syntaxe", "java est une version ameliore de javascript","Java est une île, ça n'a rien à voir !", "B"],
+	     ["Laquelle de ces syntaxes est correcte ?", "if (a != 2) {}", "if a != 2 {}", "if (a < > 2) {}","if a < > 2 {}", "A"],
+	     ["Quelle méthode n'existe pas dans le DOM ?", "document.getElementsByClassName", "document.getElementsByTagName", "document.getElementsByAttribute","document.getElementById", "C"],
+	     ["Dans quel balise HTML plaçons-nous le code JavaScript?", "La balise js", " La balise javascript", "La balise script","Aucune de ces réponses n’est vraie.", "C"],
+	     ["Le fichier externe de JavaScript doit contenir la balise script?", " Faux", "Vrai" , "Aucune de ces reponses est vraie","Je ne sais pas", "A"],
+	     ["Comment écrire une condition IF en JavaScript?", "if a = 2 then", "if a = 2" , "if (a == 2)","Aucune de ces réponses n’est vraie.", "C"],
+	     ["Quelle méthode permet de comparer deux chaînes texte ?", "charCodeAt()", "indexOf()" , "charAt()","localeCompare()", "D"],
+	     ["Quel attribut des noeuds de l'arbre DOM correspond à l'attribut HTML class ?", "class", "CLASS" , "listClass","className", "D"],
+	     ["Comment faire appelle à une fonction nommée « sum »?", "sum()", "call sum()" , "call function sum()","Aucune de ces réponses n’est vraie.", "A"],
+	     ["Quel est le bon endroit pour insérer un code JavaScript?", "La section head", "La section body" , "Les deux sections head et body sont correctes","Aucune de ces réponses n’est vraie.", "C"]
+			];
+			function _(x){
+		return document.getElementById(x);
+	}
+	function resultat(){
+		qcm = _("qcm");
+		if(position >= questions.length){
+			alert( "vous avez reussi à repondre correctement "+correcte+" questions sur "+questions.length+" questions");
+			_("statuts").innerHTML = "FIN DES QCM !!!";
+			position = 0;
+			correcte = 0;
+			return false;
+		}
+		_("statuts").innerHTML = "Question "+(position+1)+" sur "+questions.length+" questions";
+		question = questions[position][0];
+		choisirA = questions[position][1];
+		choisirB = questions[position][2];
+		choisirC = questions[position][3];
+		choisirD = questions[position][4];
+		qcm.innerHTML = "<h2>"+question+"</h2>";
+		qcm.innerHTML += "<input type='radio' name='reponses' value='A'> "+choisirA+"<br><br><br>";
+		qcm.innerHTML += "<input type='radio' name='reponses' value='B'> "+choisirB+"<br><br><br>";
+		qcm.innerHTML += "<input type='radio' name='reponses' value='C'> "+choisirC+"<br><br><br>";
+		qcm.innerHTML += "<input type='radio' name='reponses' value='D'> "+choisirD+"<br><br>";
+		qcm.innerHTML += "<button onclick='verificationReponse()'>Suivant</button>";
+	}
+	function verificationReponse(){
+		reponses = document.getElementsByName("reponses");
+		for(var i=0; i<reponses.length; i++){
+			if(reponses[i].checked){
+				choix = reponses[i].value;
+			}
+		}
+		if(choix == questions[position][5]){
+			correcte++;
+		}
+		position++;
+		resultat();
+	}
+	window.addEventListener("load", resultat, false);
+</script>
+</head>
+<style type="text/css">
+	body
+{
+	background-color: #1E90FF;
+	font-family: 20px;
+}
+#header
+{
+	background-color: black;
+	color: white;
+	width: 900px;
+	margin: auto;
+	text-align: center;
+	border-radius: 10px;
+}
+
+#qcm
+{
+	width: 700px;
+	height: 350px;
+	margin: auto;
+	background-color: yellow;
+	border: 10px solid black;
+	border-radius: 20px;
+}
+#statuts
+{
+	width: 500px;
+	margin: auto;
+	text-align:center;
+	color: white;
+}
+button
+{
+	background-color: green;
+	border: 2px solid green;
+	border-radius: 10px;
+	color: #fff;
+	font-family: inherit;
+	font-size: 16px;
+	padding:8px;
+	margin-top: 12px;
+	width: 30%;
+}
+</style>
+<body><br><br>
+<h1 id="header"><marquee behavior ="alternate"> Questions à choix multiple 🏆🏆🥇 !!!</marquee></h1><br><br>
+<h2 id="statuts"></h2><br><br>
+<fieldset id="qcm">
+	<legend>AHAMADI NASRY</legend>
+</fieldset>
+</body>
+</html>
